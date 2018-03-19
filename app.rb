@@ -65,12 +65,16 @@ post '/recibirPalabra' do
 	if @resultado == "OK"
 		@resultado = "EXITOSO!"
 
-		if contador < 5 
-			@totalpuntos = @@formaPalabras.getScore()
-			erb :control
-		else
-			erb :final
-		end
+		#if contador < 5 
+			#@totalpuntos = @@formaPalabras.getScore()
+			#erb :control
+		#else
+			#erb :final
+		#end
+	
+		@mensaje = "Resultado OK"
+		@palabracorrecta = listapalabras[contador]
+		erb :falla
 
 	else
 		@resultado = "FALLO!"
@@ -90,9 +94,10 @@ post '/recibirPalabra' do
 			else
 				erb :final
 			end
-		else
+		else #End resultado fallo
 			if contador < 5 
 				@palabracorrecta = listapalabras[contador]
+				@mensaje = "Haz Fallado 3 Veces"
 				erb :falla
 			else
 				erb :final

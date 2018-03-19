@@ -2,9 +2,9 @@ require "./lib/sopadeletras.rb"
 
 describe "sopa de Letras" do
 
-	it "LENGUAJE" do
+	it "LENGUAS" do
 		nr = SopaDeLetras.new
-		nr.ObtenerPalabra("LENGUAJE").should == "GEUAJELN"
+		nr.ObtenerPalabra("LENGUAS").should == "SAGUNEL"
 	end
 
 end

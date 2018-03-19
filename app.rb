@@ -11,7 +11,14 @@ end
 post '/mostrar/:palabra' do
   @@formaPalabras = SopaDeLetras.new
 	
-  @palabra = @@formaPalabras.ObtenerPalabra("LENGUAS")
+  @palabra = @@formaPalabras.ObtenerPalabra(params["palabra"])
     erb :control
 end
 
+
+post '/recibirPalabra' do
+  @palabra_recibida = params["palabra"]
+	@@formaPalabras = SopaDeLetras.new
+
+	@resultado = @@formaPalabras.validarPalabra(@palabra_recibida)
+end

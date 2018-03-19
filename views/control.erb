@@ -1,16 +1,33 @@
 <center>
-                <p><h1><b>Forma la palabra v1.0</b></h1>
-                <p>
-								Palabra: <%= @palabra %>
+  <p><h1><b>Forma la palabra v1.0</b></h1>
+  <p>
+	Palabra: <%= @palabra %>
 
-                <table>
-                               <tr>
-                                               <td>
-                                                               <form method="post" action="/mostrar/LENGUAS">
-                                                                              <p><input type="submit" value="Mostrar Palabra" />
-                                                               </form>
-                                               </td>
-                               </tr>
-                </table>
+  <table>
+     <tr>
+         <td>
+             <form method="post" action="/mostrar/LENGUAS">
+                            <p><input type="submit" value="Mostrar Palabra" />
+             </form>
+         </td>
+     </tr>
+		<tr></tr>
+		<tr>
+			<td colspan="3">Resultado: <%= @resultado%></td>
+		</tr>
+		<form method="post" action="/recibirPalabra">
+		<tr>
+				<td>
+					<p>Ingrese Palabra:
+				</td>
+				<td>
+					<input type="text" name="palabra" />
+				</td>
+				<td>
+					<input type="submit" value="Enviar" />
+				</td>
+		</tr>
+		</form>
+  </table>
 </center>
 

@@ -1,17 +1,34 @@
 require 'sinatra'
 require './lib/sopadeletras.rb'
 
-contador = 0
+	def initialize
+		#@contador = 0
+	end
 
+@@formaPalabras = SopaDeLetras.new
+
+#@listapalabras = ["LENGUAS", "ENCUENTRO", "MARIA"]
 
 get '/' do
-    erb :control
+	@contador = 0
+  erb :control
 end
 
 post '/mostrar/:palabra' do
-  @@formaPalabras = SopaDeLetras.new
+  
 	
-  @palabra = @@formaPalabras.ObtenerPalabra("LENGUAS")
+	listapalabras = ["LENGUAS", "ENCUENTRO", "MARIA"]
+
+	@contador = params["contador"].to_i
+	
+	if @contador < 3 
+  @palabra = @@formaPalabras.ObtenerPalabra(listapalabras[@contador])
+	@contador	= @contador	+ 1
     erb :control
+	end 
 end
+
+
+
+
 

@@ -1,4 +1,7 @@
 class SopaDeLetras
+	def initialize
+		@score = 0
+	end
 	
 	def ObtenerPalabra(palabra)
 		#diccionario= {"LENGUAJE" => "GEUAJELN"}
@@ -8,4 +11,13 @@ class SopaDeLetras
 
 		return diccionario[palabra] 
 	end
+
+	def ValidarPalabra(palabra)
+		if ObtenerPalabra(palabra).length > 0
+			return "OK"
+		else
+			return "NO"
+		end
+	end
+
 end

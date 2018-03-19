@@ -13,24 +13,38 @@ class SopaDeLetras
 		return diccionario[palabra] 
 	end
 
+	def ValidarPalabra(palabraoriginal, palabraingresada)
+ 		#encontrada = ObtenerPalabra(palabra)
+		#@contador = @contador + 1
+		#if encontrada != nil and encontrada.length > 0
+		
+		if palabraoriginal == palabraingresada
+			@score = @score + 1
+			return "OK"
+		else
+			return "NO"
+		end
+	end
+	
+	def getContador
+		return @contador
+	end
+
 
 	def incrementarContador
 		@contador = @contador + 1
 		return @contador
 	end
 
-	def incrementarScore
-		@score = @score + 1
+	def getScore
 		return @score
 	end
 
-	def ValidarPalabra(palabra)
- 		encontrada = ObtenerPalabra(palabra)
-		if encontrada != nil and encontrada.length > 0
-			return "OK"
-		else
-			return "NO"
-		end
-	end
+	#def incrementarScore
+		#@score = @score + 1
+		#return @score
+	#end
+
+
 
 end

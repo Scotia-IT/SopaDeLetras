@@ -2,20 +2,18 @@
   <p><h1><b>Forma la palabra v1.0</b></h1>
   <p>
 	Palabra: <%= @palabra %>
+	<br /> <%= @pista %>
 
   <table>
      <tr>
          <td>
-             <form method="post" action="/mostrar/LENGUAS">
+             <form method="post" action="/mostrar/">
                             <p><input type="submit" value="Mostrar Palabra" />
-								<input type="hidden" name="contador" value="<%= @contador %>" />
              </form>
          </td>
      </tr>
 		<tr></tr>
-		<tr>
-			<td colspan="3">Resultado: <%= @resultado%></td>
-		</tr>
+		
 		<form method="post" action="/recibirPalabra">
 		<tr>
 				<td>
@@ -29,7 +27,22 @@
 				</td>
 		</tr>
 <input type="hidden" name="palabraoriginal" value="<%= @palabraoriginal %>" />
+								<input type="hidden" name="numerointento" value="<%= @numerointento %>" />
 		</form>
+		
+		<tr>
+			<td colspan="3">Resultado: <%= @resultado%></td>
+		</tr>
+
+<tr>
+			<td colspan="3"><%= @msgintento%></td>
+		</tr>
+
+		<tr>
+			<td colspan="2">Total Puntos: <%= @totalpuntos%></td>
+		</tr>
+		
+
   </table>
 
 </center>

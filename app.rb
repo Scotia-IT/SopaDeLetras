@@ -29,15 +29,20 @@ post '/mostrar/' do
 	  @palabra = @@formaPalabras.ObtenerPalabra(listapalabras[contador])
 		@pista = listapistas[contador]
 		@palabraoriginal = listapalabras[contador]
+
+		@totalpuntos = @@formaPalabras.getScore()
+
+		@numerointento = 1;
+		@msgintento = "Intento No. " + @numerointento.to_s
+		@resultado = ""
+
+		erb :control
+	else
+		@totalpuntos = @@formaPalabras.getScore()
+		erb :final
 	end 
 
-	@totalpuntos = @@formaPalabras.getScore()
-
-	@numerointento = 1;
-	@msgintento = "Intento No. " + @numerointento.to_s
-	@resultado = ""
-
-  erb :control
+	
 
 end
 
@@ -47,31 +52,56 @@ post '/recibirPalabra' do
 #		contador = @@formaPalabras.getContador()
  
 	@palabra_recibida = params["palabra"]
+	@palabra_recibida = @palabra_recibida.upcase
  
 	@palabraoriginal = params["palabraoriginal"]
 
 	@numerointento = params["numerointento"].to_i
 	
 	@resultado = @@formaPalabras.ValidarPalabra(@palabra_recibida, @palabraoriginal)
+
+	contador = @@formaPalabras.getContador()
 	
 	if @resultado == "OK"
 		@resultado = "EXITOSO!"
+
+		if contador < 5 
+			@totalpuntos = @@formaPalabras.getScore()
+			erb :control
+		else
+			erb :final
+		end
+
 	else
 		@resultado = "FALLO!"
 		@numerointento = @numerointento + 1
+		
+
 		if @numerointento <= 3
-			contador = @@formaPalabras.getContador()
-			@palabra = @@formaPalabras.ObtenerPalabra(listapalabras[contador])
-			@pista = listapistas[contador]
-			@palabraoriginal = listapalabras[contador]
-			@msgintento = "Intento No. " + @numerointento.to_s
+			
+			if contador < 5 
+				@palabra = @@formaPalabras.ObtenerPalabra(listapalabras[contador])
+				@pista = listapistas[contador]
+				@palabraoriginal = listapalabras[contador]
+				@msgintento = "Intento No. " + @numerointento.to_s
+
+				@totalpuntos = @@formaPalabras.getScore()
+				erb :control
+			else
+				erb :final
+			end
+		else
+			if contador < 5 
+				@palabracorrecta = listapalabras[contador]
+				erb :falla
+			else
+				erb :final
+			end
 		end
 		
 	end
 
-	@totalpuntos = @@formaPalabras.getScore()
-
- erb :control
+	
 end
 
 
